@@ -1,0 +1,51 @@
+<html>
+
+<head>
+    <title>DJRFF Tapton Test</title>
+    <style>
+        #target {
+            color: white;
+            padding: 20vh;
+            font-size: 48vh;
+        }
+    </style>
+</head>
+<body id="body">
+<h1 id="target">
+Num
+</h1>
+
+<script src="//cdn.jsdelivr.net/npm/pouchdb@7.0.0/dist/pouchdb.min.js"></script>
+<script type="text/javascript">
+const db = new PouchDB('http://localhost:5984/all-light-sensors');
+db.info().then(function (info) {
+  console.log(info);
+});
+// db.changes({
+//     since: 0
+// }).then(function (changes) {
+//     console.log(changes);
+// }).catch(function (err) {
+//     console.log(err);
+//   // handle errors
+// });
+
+db.changes({
+    since: 'now',
+    live: true,
+    include_docs: true
+}).on('change', function (change) {
+    // console.log(change);
+    console.log(change.doc.light_level, change.doc.led_on, `${change.doc.rgb.red},${change.doc.rgb.green},${change.doc.rgb.blue}`);
+    const target = document.getElementById('target');
+    target.textContent = change.doc.light_level;
+    const body = document.getElementById('body');
+    body.style = `background-color: rgb(${change.doc.rgb.red},${change.doc.rgb.green},${change.doc.rgb.blue})`;
+  // received a change
+}).on('error', function (err) {
+    console.log(err)
+  // handle errors
+});
+</script>
+</body>
+<html>
