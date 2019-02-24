@@ -1,0 +1,1 @@
+cp ./all-data-to-db.service /lib/systemd/system/all-data-to-db.service && sudo chmod 644 /lib/systemd/system/all-data-to-db.service && sudo systemctl daemon-reload && sudo systemctl enable all-data-to-db.service
