@@ -28,15 +28,15 @@ try:
         if last_z > 0 and abs(z - last_z) > threshold:
             print("Motion Detected!!!")
             leds.on()
-                data = {
-                    "name": hostname,
-                    "sensor": "motion",
-                    "created_at": time.strftime("%Y/%m/%d %H:%M:%S +0000", time.gmtime()),
-                    "threshold": threshold,
-                    "last_z": last_z,
-                    "z": z,
-                    "readings": readings
-                }
+            data = {
+                "name": hostname,
+                "sensor": "motion",
+                "created_at": time.strftime("%Y/%m/%d %H:%M:%S +0000", time.gmtime()),
+                "threshold": threshold,
+                "last_z": last_z,
+                "z": z,
+                "readings": readings
+            }
 
             db.create_document(data)
         last_z = z
