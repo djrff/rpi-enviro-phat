@@ -1,4 +1,11 @@
 #!/usr/bin/env python
+import sys
+sys.path.insert(0, '../couchdb')
+import socket
+hostname = socket.gethostname()
+from cloudantclient import client
+
+db = client['all-data']
 
 import time
 
@@ -15,13 +22,26 @@ threshold = 1000
 try:
     while True:
         lightSensor = light.light()
+        led = False
 
         print("{} lumen".format(lightSensor))
 
         if lightSensor < threshold:
           leds.on()
+          led = True
         else:
           leds.off()
+          led = False
+
+        data = {
+          "name": hostname,
+          "sensor": "light",
+          "created_at": time.strftime("%Y/%m/%d %H:%M:%S +0000", time.gmtime()),
+          "light_level": light.light(),
+          "led_on": led,
+        }
+
+        db.create_document(data)
 
         time.sleep(0.1)
 

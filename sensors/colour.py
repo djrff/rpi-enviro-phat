@@ -54,7 +54,7 @@ try:
 
         data = {
           "name": hostname,
-          "sensor": "light",
+          "sensor": "colour",
           "created_at": time.strftime("%Y/%m/%d %H:%M:%S +0000", time.gmtime()),
           "light_level": light.light(),
           "led_on": True,
