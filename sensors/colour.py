@@ -50,7 +50,7 @@ try:
         adjusted_colour = (accentuate_colours(requested_colour[0],avg),accentuate_colours(requested_colour[1],avg),accentuate_colours(requested_colour[2],avg))
         actual_name, closest_name = get_colour_name(adjusted_colour)
 
-        print "Closest colour name:", closest_name, "but this is probably too dark. RGB", requested_colour, "ADJ", adjusted_colour
+        print "Closest colour name:", closest_name, ". RGB", adjusted_colour
 
         data = {
           "name": hostname,
