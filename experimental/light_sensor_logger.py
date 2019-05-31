@@ -1,3 +1,6 @@
+import sys
+sys.path.insert(0, '../couchdb')
+
 from cloudantclient import client
 import time
 from envirophat import light, leds
