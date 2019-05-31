@@ -6,7 +6,7 @@ After=multi-user.target couchdb.service
 Type=idle
 User=root
 ExecStartPre=/bin/sleep 30
-ExecStart=/usr/bin/python /home/pi/djrff/rpi-enviro-phat/all_sensors_to_db.py
+ExecStart=/usr/bin/python /home/pi/djrff/rpi-enviro-phat/sensors/all_data_database.py
 
 [Install]
 WantedBy=multi-user.target
