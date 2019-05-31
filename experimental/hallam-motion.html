@@ -1,0 +1,120 @@
+<html>
+
+<head>
+    <title>DJRFF Tapton Test</title>
+    <style>
+        #target {
+            color: white;
+            padding: 20vh;
+            font-size: 48vh;
+        }
+        body {
+          margin-left: 20px;
+          margin-top: 20px;
+        }
+        #players {
+          margin-top: 20px;
+        }
+
+        #players .player {
+          margin-bottom: 10px;
+        }
+
+        #players .active {
+          background-color: yellow;
+        }
+
+        #players .playerName {
+          display: inline-block;
+          padding: 5px;
+        }
+
+        #players .score {
+          display: inline-block;
+          padding: 5px;
+        }
+
+        #players .score > div {
+          display: inline-block;
+          height: 10px;
+          width: 10px;
+          background-color: red;
+          margin-right: 5px;
+          margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body id="body">
+<input type="text" placeholder="Your name">
+<button>Arm alarm</button>
+<audio>
+  <source src="Ping.mp3" type="audio/mp3">
+</audio>
+<div id="players"></div>
+<script src="//cdn.jsdelivr.net/npm/pouchdb@7.0.0/dist/pouchdb.min.js"></script>
+<script type="text/javascript">
+const db = new PouchDB('http://emily-djrff.local:5984/motion');
+db.info().then(function (info) {
+  console.log(info);
+});
+// db.changes({
+//     since: 0
+// }).then(function (changes) {
+//     console.log(changes);
+// }).catch(function (err) {
+//     console.log(err);
+//   // handle errors
+// });
+const audioElement = document.getElementsByTagName('audio')[0];
+const submit = document.getElementsByTagName('button')[0];
+const input = document.getElementsByTagName('input')[0];
+const players = document.getElementById('players');
+let currentPlayerScore;
+
+function onSubmit() {
+  if (!input.value) {
+    return;
+  }
+  const playerName = input.value;
+  input.value = "";
+  if (currentPlayerScore) {
+    currentPlayerScore.closest('.player').className = currentPlayerScore.closest('.player').className.split(' ')[0];
+  }
+  const newPlayerContainer = document.createElement('div');
+  newPlayerContainer.className = "player active";
+  const newPlayerNameElement = document.createElement('div');
+  newPlayerNameElement.className = "playerName";
+  const newPlayerName = document.createTextNode(playerName);
+  const newPlayerScore = document.createElement('div');
+  newPlayerScore.className = "score";
+  newPlayerNameElement.appendChild(newPlayerName);
+  newPlayerContainer.appendChild(newPlayerNameElement);
+  newPlayerContainer.appendChild(newPlayerScore);
+  currentPlayerScore = players.appendChild(newPlayerContainer).childNodes[1];
+}
+
+submit.onclick = onSubmit;
+input.addEventListener("keyup", function(event) {
+    event.preventDefault();
+    if (event.keyCode === 13) {
+        onSubmit();
+    }
+});
+
+db.changes({
+    since: 'now',
+    live: true,
+    include_docs: true
+}).on('change', function (change) {
+    console.log('play sound');
+    audioElement.play();
+    if (currentPlayerScore) {
+    const newPoint = document.createElement('div');
+    currentPlayerScore.appendChild(newPoint);
+    }
+}).on('error', function (err) {
+    console.log(err)
+});
+</script>
+</body>
+<html>
