@@ -30,7 +30,7 @@ try:
         print("{} lumen".format(lightSensor))
 
         if lightSensor < threshold:
-          leds.on()
+#         leds.on()
           led = True
         else:
           leds.off()

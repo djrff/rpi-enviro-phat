@@ -31,7 +31,7 @@ try:
 
         print("{} degrees Celsius".format(temperature))
         if temperature > threshold:
-            leds.on()
+#           leds.on()
             led = True
         else:
             leds.off()

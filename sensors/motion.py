@@ -32,7 +32,7 @@ try:
         z = sum(readings) / len(readings)
         if last_z > 0 and abs(z - last_z) > threshold:
             print("Motion Detected!!!")
-            leds.on()
+#           leds.on()
             motion_detected = True
 
         data = {
