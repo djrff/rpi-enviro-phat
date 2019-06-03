@@ -1,11 +1,15 @@
 #!/usr/bin/env python
 import sys
-sys.path.insert(0, '../couchdb')
+sys.path.insert(0, '/home/pi/djrff/rpi-enviro-phat/couchdb')
 import socket
 hostname = socket.gethostname()
 from cloudantclient import client
 
-db = client['all-data']
+try:
+  db = client['your-db-name']
+except:
+  db = client['temperature-data']
+
 import time
 
 from envirophat import weather, leds
