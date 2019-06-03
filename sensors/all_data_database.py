@@ -1,25 +1,27 @@
 #!/usr/bin/env python
 
 import sys
-sys.path.insert(0, '../couchdb')
+sys.path.insert(0, '/home/pi/djrff/rpi-enviro-phat/couchdb')
 import socket
 hostname = socket.gethostname()
 from cloudantclient import client
 
-db = client['all-data']
+try:
+  db = client['your-db-name']
+except:
+  db = client['all-data']
+
 import time
 
 from envirophat import light, weather, motion, analog
 
 unit = 'hPa'  # Pressure unit, can be either hPa (hectopascals) or Pa (pascals)
 
-
 def write(line):
     sys.stdout.write(line)
     sys.stdout.flush()
 
-
-write("--- Enviro pHAT Monitoring ---")
+write("--- Writing all data to the database ---")
 
 try:
     while True:
@@ -36,7 +38,6 @@ try:
           "pressure_unit": unit,
           "altitude": weather.altitude(), # Supply your local qnh for more accurate readings
           "light_level": light.light(),
-          "led_on": led,
           "colour_red": rgb[0],
           "colour_green": rgb[1],
           "colour_blue": rgb[2],
