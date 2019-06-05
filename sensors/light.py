@@ -8,7 +8,7 @@ from cloudantclient import client
 try:
   db = client['your-db-name']
 except:
-  db = client['light-data']
+  db = client['all-data']
 
 import time
 
