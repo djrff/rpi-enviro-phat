@@ -9,7 +9,11 @@ import webcolors
 from cloudantclient import client
 from envirophat import light, leds
 
-lightdb = client['all-data']
+try:
+  # For example 'colour-data'
+  db = client['your-db-name']
+except:
+  db = client['all-data']
 
 def closest_colour(requested_colour):
     min_colours = {}
@@ -43,7 +47,7 @@ Press Ctrl+C to exit.
 
 """)
 try:
-    leds.on()
+#   leds.on()
     while True:
         requested_colour = light.rgb()
         avg = sum(requested_colour)/3
@@ -71,7 +75,7 @@ try:
           }
         }
 
-        lightdb.create_document(data)
+        db.create_document(data)
 
         time.sleep(1)
 

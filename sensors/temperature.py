@@ -6,9 +6,10 @@ hostname = socket.gethostname()
 from cloudantclient import client
 
 try:
-  db = client['your-db-name']
+  # For example 'temperature-data'
+  db = client['your-db-name'] 
 except:
-  db = client['temperature-data']
+  db = client['all-data']
 
 import time
 
