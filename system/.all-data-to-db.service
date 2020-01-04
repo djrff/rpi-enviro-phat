@@ -1,0 +1,13 @@
+[Unit]
+Description=Write all sensor data to CouchDB
+After=multi-user.target couchdb.service
+
+[Service]
+Environment="SCRIPT_CONTEXT=/usr/bin/python /home/data/sensors/record/"
+Type=idle
+User=root
+ExecStartPre=/bin/sleep 30
+ExecStart=${SCRIPT_CONTEXT}light.py & ${SCRIPT_CONTEXT}motion.py & ${SCRIPT_CONTEXT}temperature.py
+
+[Install]
+WantedBy=multi-user.target
