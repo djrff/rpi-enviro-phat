@@ -1,20 +1,18 @@
 #!/usr/bin/env python
 import sys
-sys.path.insert(0, '/home/pi/djrff/rpi-enviro-phat/couchdb')
 import socket
-hostname = socket.gethostname()
+import time
+sys.path.insert(0, '../../.couchdb')
 from cloudantclient import client
+from envirophat import weather, leds
+
+hostname = socket.gethostname()
 
 try:
   # For example 'temperature-data'
   db = client['your-db-name'] 
 except:
   db = client['all-data']
-
-import time
-
-from envirophat import weather, leds
-
 
 print("""Light the LEDs upon temperature increase.
 Press Ctrl+C to exit.

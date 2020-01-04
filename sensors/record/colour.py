@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 import sys
-sys.path.insert(0, '../couchdb')
 import socket
-hostname = socket.gethostname()
-
 import time
 import webcolors
+sys.path.insert(0, '../../.couchdb')
 from cloudantclient import client
 from envirophat import light, leds
+
+hostname = socket.gethostname()
 
 try:
   # For example 'colour-data'

@@ -1,9 +1,12 @@
 #!/usr/bin/env python
 import sys
-sys.path.insert(0, '/home/pi/djrff/rpi-enviro-phat/couchdb')
 import socket
-hostname = socket.gethostname()
+import time
+sys.path.insert(0, '../../.couchdb')
 from cloudantclient import client
+from envirophat import motion, leds
+
+hostname = socket.gethostname()
 
 try:
   # For example 'motion-data'
@@ -11,9 +14,7 @@ try:
 except:
   db = client['all-data']
 
-import time
 
-from envirophat import motion, leds
 
 
 print("""This example will detect motion using the accelerometer.
