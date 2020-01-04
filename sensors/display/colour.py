@@ -35,8 +35,9 @@ print("""Shows which colours it can see.
 Press Ctrl+C to exit.
 
 """)
+
 try:
-#   leds.on()
+    leds.on()
     while True:
         requested_colour = light.rgb()
         avg = sum(requested_colour)/3

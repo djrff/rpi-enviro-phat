@@ -46,9 +46,10 @@ print("""Shows which colours it can see.
 Press Ctrl+C to exit.
 
 """)
+
 try:
-#   leds.on()
-    while True:
+   leds.on()
+   while True:
         requested_colour = light.rgb()
         avg = sum(requested_colour)/3
         adjusted_colour = (accentuate_colours(requested_colour[0],avg),accentuate_colours(requested_colour[1],avg),accentuate_colours(requested_colour[2],avg))

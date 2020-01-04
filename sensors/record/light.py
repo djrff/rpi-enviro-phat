@@ -4,6 +4,7 @@ import socket
 import time
 sys.path.insert(0, '../../.couchdb')
 from cloudantclient import client
+from envirophat import light
 
 hostname = socket.gethostname()
 
@@ -12,9 +13,6 @@ try:
   db = client['your-db-name']
 except:
   db = client['all-data']
-
-
-from envirophat import light, leds
 
 print("""Shows how bright it is, and turns the LEDs on when it's dark.
 
@@ -32,10 +30,8 @@ try:
         print("{} lumen".format(lightSensor))
 
         if lightSensor < threshold:
-#         leds.on()
           led = True
         else:
-          leds.off()
           led = False
 
         data = {

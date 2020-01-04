@@ -4,7 +4,7 @@ import socket
 import time
 sys.path.insert(0, '../../.couchdb')
 from cloudantclient import client
-from envirophat import motion, leds
+from envirophat import motion
 
 hostname = socket.gethostname()
 
@@ -14,11 +14,10 @@ try:
 except:
   db = client['all-data']
 
-
-
-
 print("""This example will detect motion using the accelerometer.
+
 Press Ctrl+C to exit.
+
 """)
 
 threshold = 0.05
@@ -34,7 +33,6 @@ try:
         z = sum(readings) / len(readings)
         if last_z > 0 and abs(z - last_z) > threshold:
             print("Motion Detected!!!")
-#           leds.on()
             motion_detected = True
 
         data = {
@@ -55,9 +53,7 @@ try:
 
         last_z = z
 
-
         time.sleep(0.5)
-        leds.off()
 
 except KeyboardInterrupt:
     pass

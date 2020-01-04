@@ -4,7 +4,7 @@ import socket
 import time
 sys.path.insert(0, '../../.couchdb')
 from cloudantclient import client
-from envirophat import weather, leds
+from envirophat import weather
 
 hostname = socket.gethostname()
 
@@ -15,7 +15,9 @@ except:
   db = client['all-data']
 
 print("""Light the LEDs upon temperature increase.
+
 Press Ctrl+C to exit.
+
 """)
 
 threshold = None
@@ -30,10 +32,8 @@ try:
 
         print("{} degrees Celsius".format(temperature))
         if temperature > threshold:
-#           leds.on()
             led = True
         else:
-            leds.off()
             led = False
 
         data = {

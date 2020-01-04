@@ -5,7 +5,9 @@ import time
 from envirophat import weather, leds
 
 print("""Light the LEDs upon temperature increase.
+
 Press Ctrl+C to exit.
+
 """)
 
 threshold = None
