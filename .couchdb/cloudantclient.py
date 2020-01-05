@@ -1,5 +1,6 @@
 from cloudant.client import CouchDB
-client = CouchDB(None, None, url="http://127.0.0.1:5984", connect=True, auto_renew=True, admin_party=True)
+import credentials
+client = CouchDB(credentials.USERNAME, credentials.PASSWORD, url="http://127.0.0.1:5050", connect=True, auto_renew=True, admin_party=True)
 
 session = client.session()
 

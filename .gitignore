@@ -1,6 +1,6 @@
 # Configuration
 config.ini
-couchdb/.credentials.py
+.couchdb/credentials.py
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -98,6 +98,7 @@ env.bak/
 venv.bak/
 .bash_logout
 .bashrc
+.bash_history
 .profile
 
 # Spyder project settings
