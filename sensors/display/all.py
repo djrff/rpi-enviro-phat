@@ -3,7 +3,7 @@
 import sys
 import time
 
-from envirophat import light, weather, motion, analog
+from envirophat import light, weather, motion
 
 unit = 'hPa'  # Pressure unit, can be either hPa (hectopascals) or Pa (pascals)
 
@@ -11,12 +11,11 @@ def write(line):
     sys.stdout.write(line)
     sys.stdout.flush()
 
-write("--- Enviro pHAT Monitoring ---")
+write("--- DJRFF pHAT Monitoring ---")
 
 try:
     while True:
         rgb = light.rgb()
-        analog_values = analog.read_all()
         mag_values = motion.magnetometer()
         acc_values = [round(x, 2) for x in motion.accelerometer()]
 
