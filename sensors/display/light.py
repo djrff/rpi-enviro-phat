@@ -10,7 +10,7 @@ Press Ctrl+C to exit.
 
 """)
 
-threshold = 0
+threshold = 1000
 
 try:
     while True:
