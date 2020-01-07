@@ -10,7 +10,7 @@ hostname = socket.gethostname()
 
 try:
   # For example 'temperature-data'
-  db = client['your-db-name'] 
+  db = client['your-db-name']
 except:
   db = client['all-data']
 
