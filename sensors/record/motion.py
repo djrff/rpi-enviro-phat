@@ -2,7 +2,7 @@
 import sys
 import socket
 import time
-sys.path.insert(0, '../../.couchdb')
+sys.path.insert(0, '/home/data/.couchdb')
 from cloudantclient import client
 from envirophat import motion
 
