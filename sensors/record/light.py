@@ -27,7 +27,7 @@ try:
         lightSensor = light.light()
         led = False
 
-        print("{} lumen".format(lightSensor))
+        print("{} lux".format(lightSensor))
 
         if lightSensor < threshold:
           led = True
